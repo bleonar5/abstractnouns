@@ -2,6 +2,7 @@ import re
 import csv
 from nltk.corpus import wordnet
 import nltk
+import sys
 from nltk import WordNetLemmatizer
 
 #returns a string of the relevant dependencies (those that contain the target noun)
@@ -35,7 +36,7 @@ def getNouns(tagged, lemma):
 	tokenized = tagged.split()
 	nouns = []
 	for i in range(len(tokenized)):
-		noun = re.findall(r'(\S*)/N', tokenized[i])
+		noun = re.findall(r'(\S*)/', tokenized[i])
 		try:
 			if len(noun) == 1 and WordNetLemmatizer().lemmatize(noun[0], 'n') == lemma:
 				tag = re.findall(r'%s\/(\w*)' % noun[0], tokenized[i])
@@ -394,4 +395,5 @@ def appendToCSV(infile, outfile, lemma):
 				newrow.extend(returnNounTests([row[0], row[1], row[2]], lemma, nounoccs[i]))
 				writer.writerow(newrow)
 
-appendToCSV('sellingIn1.csv', 'sellingOut.csv', 'selling')
+verb = sys.argv[1]
+appendToCSV(verb + 'In1.csv', verb + 'Out2.csv', verb)
