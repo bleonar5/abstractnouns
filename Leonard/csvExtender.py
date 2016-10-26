@@ -189,9 +189,9 @@ def getMarkofN(dep, noun, index):
 
 #determines whether the noun is compounded with another word, then returns the word it's compounded to
 def getCompOfN(dep, noun, index):
-	compright = re.findall(r'compound\(%s-%d, (\w*)-[0-9]*\)' % (noun, index), dep)
-	#compleft = re.findall(r'compound\((\w*)-[0-9]*, %s-%d\)' % (noun, index), dep)
-	comp =compright
+	#compright = re.findall(r'compound\(%s-%d, (\w*)-[0-9]*\)' % (noun, index), dep)
+	compleft = re.findall(r'compound\((\w*)-[0-9]*, %s-%d\)' % (noun, index), dep)
+	comp =compleft
 	return comp
 
 #determines whether the noun occurs in a list of other nouns, then returns a list of tuples of the other noun(s) and conjunction(s)
